@@ -6,13 +6,27 @@ def add_reviews(apps, schema_editor):
     Movie = apps.get_model("movies", "Movie")
     Review = apps.get_model("movies", "Review")
     
-    # Define the names of the reviewers
-    reviewer_names = ["Alice", "Bob", "Charlie", "David", "Eve"]
-    review_ratings = [4, 5, 3, 2, 4]
+    # Manually add reviews for each specific movie
+    forrest_gump = Movie.objects.get(title="Forrest Gump")
+    Review.objects.create(movie=forrest_gump, name="Alice", rating=4)
+    Review.objects.create(movie=forrest_gump, name="Bob", rating=5)
+    Review.objects.create(movie=forrest_gump, name="Charlie", rating=3)
 
-    for movie in Movie.objects.all():
-        for name, rating in zip(reviewer_names, review_ratings):
-            Review.objects.create(movie=movie, name=name, rating=rating)
+    toy_story = Movie.objects.get(title="Toy Story")
+    Review.objects.create(movie=toy_story, name="David", rating=2)
+    Review.objects.create(movie=toy_story, name="Eve", rating=4)
+
+    captain_phillips = Movie.objects.get(title="Captain Phillips")
+    Review.objects.create(movie=captain_phillips, name="Alice", rating=5)
+    Review.objects.create(movie=captain_phillips, name="Bob", rating=4)
+
+    catch_me_if_you_can = Movie.objects.get(title="Catch Me If You Can")
+    Review.objects.create(movie=catch_me_if_you_can, name="Charlie", rating=3)
+    Review.objects.create(movie=catch_me_if_you_can, name="David", rating=5)
+
+    bridge_of_spies = Movie.objects.get(title="Bridge of Spies")
+    Review.objects.create(movie=bridge_of_spies, name="Eve", rating=4)
+    Review.objects.create(movie=bridge_of_spies, name="Alice", rating=2)
 
 class Migration(migrations.Migration):
 
