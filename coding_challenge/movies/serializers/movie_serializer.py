@@ -3,7 +3,7 @@ from movies.models import Movie
 from .review_serializer import ReviewSerializer
 
 class MovieSerializer(serializers.ModelSerializer):
-    reviewers = ReviewSerializer(many=True, read_only=True)
+    reviewers = ReviewSerializer(many=True, read_only=True,source='reviews')
     avg_rating = serializers.SerializerMethodField()
     runtime_formatted = serializers.SerializerMethodField()
 
